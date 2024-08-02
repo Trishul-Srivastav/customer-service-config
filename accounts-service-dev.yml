@@ -49,7 +49,7 @@ info:
 
 account:
   min:
-    balance: 500
+    balance: 400
 
 feign:
   client:

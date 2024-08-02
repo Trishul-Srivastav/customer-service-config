@@ -1,0 +1,60 @@
+spring:
+  application:
+    name: accounts-service
+  datasource:
+    url: jdbc:h2:mem:bankdb
+    username: root
+    password: root
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  messages:
+    basename: ValidationMessages
+  h2:
+    console:
+      enabled: true
+  profiles:
+    active: dev
+
+
+server:
+  port: 9010
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    healthcheck:
+      enabled: true
+  instance:
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 30
+    lease-expiration-duration-in-seconds: 90
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  info:
+    env:
+      enabled: true
+
+info:
+  app:
+    name: accounts-service
+    description: Accounts service for Nagarro Bank - Default env
+    version: 1.0
+
+account:
+  min:
+    balance: 500
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: FULL
